@@ -15,9 +15,15 @@
 		<div class="col-md-2 left-col-content">
 			<div class="upper-content text-center">	
 				<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-				<h5 class="text-center pt-3">User Name</h5>
+				<h5 class="text-center pt-3">
+					<?php
+						echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];
+					?>
+				</h5>
 				<p class="text-muted text-center">
-					@Username
+					@<?php
+						echo $_SESSION['handle'];
+					?>
 				</p>
 
 				<hr>
@@ -85,43 +91,64 @@
 
 			<div class="main-post-container" id = "posts">
 
+			<!-- 
+				-- contributed by:
+				-- Name: Dhairy Raval
+				-- Banner Number: B00845519
+				--  Implemented the functionality to see the tweets and retweets from the people you follow 
+			-->
+			
 	        <?php 
-				for($i=1; $i<=10; $i++){
 
-				$heredoc = <<<END
-				<div class="feedContent" id = "tweep$i">
-						
-				<div class="d-flex image-container">
+	        	$querySQL = " SELECT users.firstname, users.lastname, tweets.text FROM `users`
+							JOIN `tweets` ON `users`.`id` = `tweets`.`author_id`
+							JOIN `follows` ON `users`.`id` = `follows`.`following_id`
+							WHERE follows.follower_id = ".$_SESSION['userid']."
+							ORDER BY `tweets`.`dateCreated` DESC";
+				$result = $dbconnection->query($querySQL);
+				$row = mysqli_num_rows($result);
 
-				<div class="user-image">
-					<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-				</div>
+				if($row > 0){
+					for($i=1; $i <= $row; $i++){
+					$tempData = $result->fetch_assoc();
 
-				<div class="pl-2 pt-1">
-					<h6>&nbsp; &nbsp; Firstname Lastname</h6>
-				</div>
-									
-				</div>
-					<hr>
-					<div class = "tweepText" style = "height:3em; overflow: hidden">
-					<p class="text-muted">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis
-					        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis. 	lay.pokemonshowdown.com/				Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis
-					</p>					
+					$heredoc = <<<END
+					<div class="feedContent" id = "tweep$i">
+							
+					<div class="d-flex image-container">
+
+					<div class="user-image">
+						<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 					</div>
-					<hr>
 
-					<div class="d-flex justify-content-around">
-						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
-						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+					<div class="pl-2 pt-1">
+						<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']}</h6>
 					</div>
-				</div>	
+										
+					</div>
+						<hr>
+						<div class = "tweepText" style = "height:3em; overflow: hidden">
+						<p class="text-muted">
+								{$tempData['text']}
+						</p>					
+						</div>
+						<hr>
 
-				END;
+						<div class="d-flex justify-content-around">
+							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
+							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
+							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+						</div>
+					</div>	
 
-				echo $heredoc;
+					END;
 
+					echo $heredoc;
+
+					}
+				}
+				else{
+					echo "<h3>Not following anyone yet?<br><br>What are you waiting for?<br>Follow other people to look at their tweets!</h3>";
 				}
 
 			?>
