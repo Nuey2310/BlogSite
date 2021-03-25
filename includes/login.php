@@ -16,7 +16,8 @@
 	if($result->num_rows > 0){
 
 		$tempData = $result->fetch_assoc();
-		$_SESSION['firstname'] = $username;
+		$_SESSION['username'] = $username;
+		$_SESSION['firstname'] = $tempData['firstname'];
 		$_SESSION['lastname'] = $tempData['lastname'];
 		$_SESSION['handle'] = $tempData['handle'];
 		$_SESSION['userid'] = $tempData['id'];

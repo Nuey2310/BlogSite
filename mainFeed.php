@@ -100,11 +100,11 @@
 			
 	        <?php 
 
-	        	$querySQL = " SELECT users.firstname, users.lastname, tweets.text FROM `users`
-							JOIN `tweets` ON `users`.`id` = `tweets`.`author_id`
-							JOIN `follows` ON `users`.`id` = `follows`.`following_id`
+	        	$querySQL = " SELECT Users.firstname, Users.lastname, Tweets.text FROM `Users`
+							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
+							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 							WHERE follows.follower_id = ".$_SESSION['userid']."
-							ORDER BY `tweets`.`dateCreated` DESC";
+							ORDER BY `Tweets`.`dateCreated` DESC";
 				$result = $dbconnection->query($querySQL);
 				$row = mysqli_num_rows($result);
 
@@ -148,7 +148,7 @@
 					}
 				}
 				else{
-					echo "<h3>Not following anyone yet?<br><br>What are you waiting for?<br>Follow other people to look at their tweets!</h3>";
+					echo "<h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3>";
 				}
 
 			?>
