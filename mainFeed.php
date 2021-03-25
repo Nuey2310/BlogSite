@@ -83,41 +83,40 @@
 
 			</div>
 
-			<div class="main-post-container">
+			<div class="main-post-container" id = "posts">
 
-			<?php
-
+	        <?php 
 				for($i=1; $i<=10; $i++){
 
-					$heredoc = <<<END
-					<div class="feedContent">
-				
-						<div class="d-flex image-container">
+				$heredoc = <<<END
+				<div class="feedContent" id = "tweep$i">
+						
+				<div class="d-flex image-container">
 
-							<div class="user-image">
-								<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-							</div>
+				<div class="user-image">
+					<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+				</div>
 
-							<div class="pl-2 pt-1">
-								<h6>&nbsp; &nbsp; Firstname Lastname</h6>
-							</div>
-							
-						</div>
-
-						<hr>
-
-						<p class="text-muted">
+				<div class="pl-2 pt-1">
+					<h6>&nbsp; &nbsp; Firstname Lastname</h6>
+				</div>
+									
+				</div>
+					<hr>
+					<div class = "tweepText" style = "height:3em; overflow: hidden">
+					<p class="text-muted">
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis
-						</p>
-						<hr>
+					        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis. 	lay.pokemonshowdown.com/				Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur cumque quam in aperiam excepturi amet est quo architecto blanditiis
+					</p>					
+					</div>
+					<hr>
 
-						<div class="d-flex justify-content-around">
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
-						</div>
-
-					</div>	
+					<div class="d-flex justify-content-around">
+						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
+						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
+						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+					</div>
+				</div>	
 
 				END;
 
@@ -125,7 +124,7 @@
 
 				}
 
-				?>
+			?>
 
 			</div>
 
@@ -180,8 +179,8 @@
 </div>
 
 </main>
-
-<?php
+<script type="text/javascript" src="js/tweepExpand.js"></script>
+<?php 
 
 	require_once "includes/footer.php";
 	

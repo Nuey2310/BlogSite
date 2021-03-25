@@ -9,7 +9,7 @@
 	$password = trim(stripslashes(htmlspecialchars($_POST['passwordField'])));
 
 	// verifying the username and the password using the database
-	$querySQL = " select * from `jedilogin` where jedi_username = '". $username ."' " . " and jedi_password = '".$password."' ";
+	$querySQL = " select * from `Users` where handle = '". $username ."' " . " and password = '".$password."' ";
 
 	$result = $dbconnection->query($querySQL);
 
