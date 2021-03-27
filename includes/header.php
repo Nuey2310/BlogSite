@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,21 +37,23 @@
 			Author: Bootstrap developers and contributors -->
 		
 		  <div class="container-fluid p-2">
-		    <a class="navbar-brand" href="#">JEDI TWEEPS</a>
+		    <a class="navbar-brand" href="mainFeed.php">JEDI TWEEPS</a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarScroll">
 		      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="#">Home</a>
+		          <a class="nav-link active" aria-current="page" href="mainFeed.php">Home</a>
 		        </li>
+				<?php if($_SESSION['admin'] == 1) { ?>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#">Link</a>
+		          <a class="nav-link" href="admin-interface.php">Create Account</a>
 		        </li>
+				<?php } ?>
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		            Link
+		            Profile
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 		            <li><a class="dropdown-item" href="#">Action</a></li>

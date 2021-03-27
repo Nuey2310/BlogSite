@@ -84,7 +84,7 @@
 				<hr>
 				<form>
 				    <textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Write A Tweep...." ></textarea>
-				    <input class="btn btn-primary post-button" type="submit" name="">
+				    <input class="btn btn-primary post-button" value = "Submit" type="submit" name="">
 			    </form>
 
 			</div>
@@ -101,7 +101,7 @@
 			
 	        <?php 
 
-	        	$querySQL = "SELECT Users.firstname, Users.lastname, Tweets.text FROM `Users`
+	        	$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
 							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
 							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 							WHERE Follows.follower_id = ".$_SESSION['userid']."
@@ -123,7 +123,7 @@
 					</div>
 
 					<div class="pl-2 pt-1">
-						<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']}</h6>
+						<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
 					</div>
 										
 					</div>
@@ -192,6 +192,7 @@
 				else {
 					echo "<div class = 'text-muted text-center'>You have no followers.</div";
 				}
+
 			?>
 					  </ul>
 				</div>
@@ -228,7 +229,6 @@
 </main>
 <script type="text/javascript" src="js/tweepExpand.js"></script>
 <?php 
-
 	require_once "includes/footer.php";
 	
 ?>

@@ -16,11 +16,11 @@
 	if($result->num_rows > 0){
 
 		$tempData = $result->fetch_assoc();
-		$_SESSION['username'] = $username;
 		$_SESSION['firstname'] = $tempData['firstname'];
 		$_SESSION['lastname'] = $tempData['lastname'];
 		$_SESSION['handle'] = $tempData['handle'];
 		$_SESSION['userid'] = $tempData['id'];
+		$_SESSION['admin'] = $tempData['isAdmin'];
 
 		/* I (dhairy) refered to the following source to learn about regenerating session Id and deleting old session
 				The following code is reused from the same site

@@ -86,8 +86,8 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `handle`, `firstname`, `lastname`, `isAdmin`, `password`, `dateCreated`) VALUES
-(1, 'yoda', 'Yoda', NULL, 0, '1234', '2021-03-25 18:25:19'),
-(2, 'luke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
+(1, 'yoda', 'Yoda', NULL, 1, '1234', '2021-03-25 18:25:19'),
+(2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
 (3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56');
 
 --
