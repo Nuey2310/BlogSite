@@ -95,15 +95,16 @@
 				-- contributed by:
 				-- Name: Dhairy Raval
 				-- Banner Number: B00845519
-				--  Implemented the functionality to see the tweets and retweets from the people you follow 
+				-- Implemented the functionality to see the tweets and retweets from the people you follow 
+				-- User Story: 4
 			-->
 			
 	        <?php 
 
-	        	$querySQL = " SELECT Users.firstname, Users.lastname, Tweets.text FROM `Users`
+	        	$querySQL = "SELECT Users.firstname, Users.lastname, Tweets.text FROM `Users`
 							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
 							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
-							WHERE follows.follower_id = ".$_SESSION['userid']."
+							WHERE Follows.follower_id = ".$_SESSION['userid']."
 							ORDER BY `Tweets`.`dateCreated` DESC";
 				$result = $dbconnection->query($querySQL);
 				$row = mysqli_num_rows($result);
@@ -148,7 +149,7 @@
 					}
 				}
 				else{
-					echo "<h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3>";
+					echo "<div class = 'px-3'><h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3></div>";
 				}
 
 			?>
@@ -163,19 +164,38 @@
 
 		<div class="col-md-3">
 			<div class="left-section">
-				
-
 				<div class="right-list">
-					<h3 class="text-center">Your Contacts</h3>
-					
+					<h3 class="text-center">Your Followers</h3>
 					<ul class="list-group list-group-flush ">
-					  <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">User name</a></li>
-					  <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">User name</a></li>
-					  <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">User name</a></li>
-					  <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">User name</a></li>
-					  <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">User name</a></li>
-					</ul>
+			<!-- 
+				-- contributed by:
+				-- Name: Arjun Banga
+				-- Banner Number: B00852696
+				--  Implemented the functionality to display a list of all the users that follow the active user
+				-- User Story: 7
+			-->
+			<?php
+				$sql = "SELECT Users.handle, Users.firstname, Users.lastname FROM Follows JOIN Users ON Follows.follower_id = Users.id
+				WHERE Follows.following_id = ".$_SESSION['userid']."
+				ORDER BY Follows.dateFollowed DESC";
+				$result = $dbconnection->query($sql);
+				$row = mysqli_num_rows($result);
+				if($row>0) {
+					for($i=1; $i <= $row; $i++){
+						$res = $result->fetch_assoc();
+						$hdoc = <<<END
+								<li class="list-group-item"><a href="#" class="text-decoration-none text-dark">{$res['firstname']} {$res['lastname']} <span class = "text-muted">@{$res['handle']}</span></a></li>
+						END;
+						echo $hdoc;
+					}
+				}
+				else {
+					echo "<div class = 'text-muted text-center'>You have no followers.</div";
+				}
+			?>
+					  </ul>
 				</div>
+			
 
 
 				<!-- follower list ends here -->

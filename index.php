@@ -70,8 +70,8 @@
 			<div class="buttonContainer">
 				<button class="login-btn" name="submit-login" type="submit">LOG IN</button>
 				<br>
-				<!-- testing purposes only -->
-				<a href="mainFeed.php">testing purposes only -> Main Feed</a>
+				<!-- testing purposes only
+				<a href="mainFeed.php">testing purposes only -> Main Feed</a> -->
 			</div>
 
 			<section class="copy-legal">

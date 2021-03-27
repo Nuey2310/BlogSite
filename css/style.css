@@ -118,7 +118,8 @@ label{
 
  	background-color: #f8f8ff;
  	overflow-x: hidden;
- }
+	min-height: 100vh;
+}
 
 #navbar-searchbar{
 
