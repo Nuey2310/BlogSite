@@ -13,26 +13,13 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `ga2db`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Follows`
---
 
 CREATE TABLE `Follows` (
   `follower_id` int NOT NULL,
   `following_id` int NOT NULL,
   `dateFollowed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `Follows`
@@ -53,7 +40,7 @@ CREATE TABLE `Tweets` (
   `author_id` int NOT NULL,
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `text` varchar(240) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `Tweets`
@@ -79,7 +66,7 @@ CREATE TABLE `Users` (
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `Users`

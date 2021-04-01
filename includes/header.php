@@ -23,7 +23,13 @@
 </head>
 
 <body>
-
+<!-- 
+	-- contributed by
+	-- Name: Miftahul Kashfy
+	-- Banner Number: B00850212
+	-- Implemented the functionality to search the tweets and retweets based on person's name or twitter handle 
+	-- User Story: 5
+-->
 
 <header>
 
@@ -67,9 +73,17 @@
 		        </li>
 		      </ul>
 		      <form class="d-flex">
-		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="navbar-searchbar" >
+		        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="navbar-searchbar" name="search-keywords">
 		        <button class="btn btn-primary " type="submit" id="navbar-button"><i class="fa fa-search" aria-hidden="true"></i></button>
 		      </form>
+		      <?php 
+		      		// If the user searches for a user, the Session variable is set
+		      		if (isset($_GET['search-keywords'])) {
+		      			$_SESSION['search'] = $_GET['search-keywords'];
+		      		}
+		      		
+		       ?>
+		      
 		    </div>
 		  </div>
 	</nav>

@@ -97,61 +97,126 @@
 				-- Banner Number: B00845519
 				-- Implemented the functionality to see the tweets and retweets from the people you follow 
 				-- User Story: 4
+
+				-- Name: Miftahul Kashfy
+				-- Banner Number: B00850212
+				-- Implemented the functionality to search the tweets and retweets based on person's name or twitter handle 
+				-- User Story: 5
+
 			-->
 			
 	        <?php 
+	        	// Session variable for search that was set is retrieved and unset after database is searched for tweets  
+	        	if (isset($_SESSION['search'])){
+	        		$value = $_SESSION['search'];
+	        		unset($_SESSION['search']);
 
-	        	$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
+	        		$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
+							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
+							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
+							WHERE Users.firstname LIKE '%{$value}%' OR Users.lastname LIKE '%{$value}%' OR Users.handle LIKE '%{$value}%'
+							ORDER BY `Tweets`.`dateCreated` DESC";
+					$result = $dbconnection->query($querySQL);
+					$row = mysqli_num_rows($result);
+
+					if($row > 0){
+						for($i=1; $i <= $row; $i++){
+						$tempData = $result->fetch_assoc();
+
+						$heredoc = <<<END
+						<div class="feedContent" id = "tweep$i">
+								
+						<div class="d-flex image-container">
+
+						<div class="user-image">
+							<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+						</div>
+
+						<div class="pl-2 pt-1">
+							<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
+						</div>
+											
+						</div>
+							<hr>
+							<div class = "tweepText" style = "height:3em; overflow: hidden">
+							<p class="text-muted">
+									{$tempData['text']}
+							</p>					
+							</div>
+							<hr>
+
+							<div class="d-flex justify-content-around">
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+							</div>
+						</div>	
+
+						END;
+
+						//if user found
+						echo $heredoc;
+						}
+
+					}else{
+						//if user not found
+						echo "<h4 style='color:DarkSlateBlue;'>Sorry, no tweeps found based on your searched user. <br><br> Try searching with another user!</h4>";
+					}
+				}else{
+					$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
 							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
 							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 							WHERE Follows.follower_id = ".$_SESSION['userid']."
 							ORDER BY `Tweets`.`dateCreated` DESC";
-				$result = $dbconnection->query($querySQL);
-				$row = mysqli_num_rows($result);
+					$result = $dbconnection->query($querySQL);
+					$row = mysqli_num_rows($result);
 
-				if($row > 0){
-					for($i=1; $i <= $row; $i++){
-					$tempData = $result->fetch_assoc();
+					if($row > 0){
+						for($i=1; $i <= $row; $i++){
+						$tempData = $result->fetch_assoc();
 
-					$heredoc = <<<END
-					<div class="feedContent" id = "tweep$i">
-							
-					<div class="d-flex image-container">
+						$heredoc = <<<END
+						<div class="feedContent" id = "tweep$i">
+								
+						<div class="d-flex image-container">
 
-					<div class="user-image">
-						<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
-					</div>
-
-					<div class="pl-2 pt-1">
-						<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
-					</div>
-										
-					</div>
-						<hr>
-						<div class = "tweepText" style = "height:3em; overflow: hidden">
-						<p class="text-muted">
-								{$tempData['text']}
-						</p>					
+						<div class="user-image">
+							<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 						</div>
-						<hr>
 
-						<div class="d-flex justify-content-around">
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-							<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+						<div class="pl-2 pt-1">
+							<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
 						</div>
-					</div>	
+											
+						</div>
+							<hr>
+							<div class = "tweepText" style = "height:3em; overflow: hidden">
+							<p class="text-muted">
+									{$tempData['text']}
+							</p>					
+							</div>
+							<hr>
 
-					END;
+							<div class="d-flex justify-content-around">
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
+								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+							</div>
+						</div>	
 
-					echo $heredoc;
+						END;
 
+						echo $heredoc;
+
+						}
 					}
-				}
-				else{
-					echo "<div class = 'px-3'><h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3></div>";
+					else{
+						echo "<div class = 'px-3'><h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3></div>";
+					}
+
 				}
 
+	        	
 			?>
 
 			</div>
