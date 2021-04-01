@@ -11,6 +11,27 @@
 <div class="container">
 	<div class="row row-content">
 
+		<!-- 
+				-- contributed by:
+				-- Name: Dhairy Raval
+				-- Banner Number: B00845519
+				-- Implemented the functionality to see the tweets and retweets from the people you follow 
+				-- User Story: 4
+
+				-- Name: Arjun Banga
+				-- Banner Number: B00852696
+				--  Implemented the functionality to display a list of all the users that follow the active user
+				-- User Story: 7
+
+				-- Name: Miftahul Kashfy
+				-- Banner Number: B00850212
+				-- Implemented the functionality to search the tweets and retweets based on person's name or twitter handle 
+				-- Implemented the functionality of posting a tweet
+				-- User Story: 5
+				-- User Story: 8
+
+			-->
+
 
 		<div class="col-md-2 left-col-content">
 			<div class="upper-content text-center">	
@@ -55,6 +76,21 @@
 
 
 		<div class="col-md-7 scroll-overflow">
+			<?php
+			/*
+				This code to implement posting a tweet and showing appropriate message
+				modification from my submission for Assignment 3 in CSCI 2170 (Winter 2021).
+					
+				Miftahul Kashfy Assignment 3: CSCI 2170 (Winter 2021), Faculty of Computer Science,
+				Dalhousie University. Available online on Gitlab at [URL]:
+				https://git.cs.dal.ca/courses/2021-winter/csci-2170/a3/kashfy
+				Date accessed: April 1st 2021
+			*/
+				// if post is posted successfully, give a message to the user, that it was posted successfully
+				if (isset($_GET['tweep-success'])) {
+					echo "<h4 style='color:MediumSlateBlue; padding: 10px 50px;'>Your tweep was posted successfully!<br></h4>";
+				}
+			?>
 
 
 			<div class="mainfeedcenter">
@@ -82,8 +118,8 @@
 				</div>
 
 				<hr>
-				<form>
-				    <textarea name="" id="" cols="3" rows="3" class="form-control" placeholder="Write A Tweep...." ></textarea>
+				<form method="post" action="includes/process-tweep.php">
+				    <textarea name="tweepText" id="" cols="3" rows="3" class="form-control" placeholder="Write A Tweep...." ></textarea>
 				    <input class="btn btn-primary post-button" value = "Submit" type="submit" name="">
 			    </form>
 
@@ -101,11 +137,23 @@
 				-- Name: Miftahul Kashfy
 				-- Banner Number: B00850212
 				-- Implemented the functionality to search the tweets and retweets based on person's name or twitter handle 
+				-- Implemented the functionality of posting a tweet
 				-- User Story: 5
+				-- User Story: 8
 
 			-->
+
 			
 	        <?php 
+	        /*
+				Searching tweets based on person's name or twitter handle
+				modification from my submission for Assignment 3 in CSCI 2170 (Winter 2021).
+					
+				Miftahul Kashfy Assignment 3: CSCI 2170 (Winter 2021), Faculty of Computer Science,
+				Dalhousie University. Available online on Gitlab at [URL]:
+				https://git.cs.dal.ca/courses/2021-winter/csci-2170/a3/kashfy 
+				Date accessed: April 1st 2021
+			*/
 	        	// Session variable for search that was set is retrieved and unset after database is searched for tweets  
 	        	if (isset($_SESSION['search'])){
 	        		$value = $_SESSION['search'];
