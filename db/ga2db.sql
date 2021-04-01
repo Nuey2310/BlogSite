@@ -12,14 +12,21 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+--
+-- Database: `2170db`
+--
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `Follows`
+--
 
 CREATE TABLE `Follows` (
   `follower_id` int NOT NULL,
   `following_id` int NOT NULL,
   `dateFollowed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Follows`
@@ -36,11 +43,11 @@ INSERT INTO `Follows` (`follower_id`, `following_id`, `dateFollowed`) VALUES
 --
 
 CREATE TABLE `Tweets` (
-  `tweet_id` int NOT NULL AUTO_INCREMENT,
+  `tweet_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `author_id` int NOT NULL,
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `text` varchar(240) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Tweets`
@@ -59,14 +66,14 @@ INSERT INTO `Tweets` (`tweet_id`, `author_id`, `dateCreated`, `text`) VALUES
 --
 
 CREATE TABLE `Users` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `handle` varchar(16) NOT NULL,
   `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `lastname` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
   `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `Users`
@@ -77,26 +84,5 @@ INSERT INTO `Users` (`id`, `handle`, `firstname`, `lastname`, `isAdmin`, `passwo
 (2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
 (3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56');
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `Tweets`
---
-ALTER TABLE `Tweets`
-  ADD PRIMARY KEY (`tweet_id`);
 
---
--- Indexes for table `Users`
---
-ALTER TABLE `Users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
