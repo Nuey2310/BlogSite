@@ -39,6 +39,11 @@
 
 Citation List:
 
+1. Retrieving current date and time in php
+ 					Available online at [URL]: https://www.php.net/manual/en/function.date.php
+ 					Date accessed: 1 April 2021
+ 					Author: PHP.net contributors
+
 
 Features Implemented and Values learned:
 
@@ -49,6 +54,13 @@ Features Implemented and Values learned:
 - Arjun Banga
    * Implemented User Story #7, displaying a list of users that follow you. The list is displayed on the right sidebar.
    * Implemented User Story #6, letting an administrator access the adminstrator interface that allows them to create new accounts with either microblog author or admin roles.
+
+- Miftahul Kashfy
+   * Implemented User Story #5, searching tweets based on person's name or twitter handle
+   * Implemented User Story #8, posting a tweet and showing appropriate message for it
+
+   * What I learned: This assignment seemed more fun to me. Making the JediTweeps applications helped me realize how what I am
+   					 learning now can one day be implemented in real life practices. 
 
    
 
