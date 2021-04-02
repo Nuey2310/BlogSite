@@ -1,3 +1,9 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the functionality to logput of the website
+	-- User Story: 3 -->
+	
 <?php
 
 	/*

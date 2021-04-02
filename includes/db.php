@@ -1,3 +1,8 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the functionality to establish a connection to the database -->
+	
 <?php
 
 	$hostservername = "localhost"; 

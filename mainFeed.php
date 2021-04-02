@@ -1,3 +1,8 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the front end layout for the main feed and the micro-blogs  -->
+
 <?php
 
 	session_start();
@@ -98,20 +103,17 @@
 
 				<div class="d-flex justify-content-around">
 					<div class="uploadSection">
-						<!-- accessed from - https://fontawesome.com/v4.7.0/icon/pencil-square-o -->
 						
 						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp; Write a tweep</a>
 					</div>
 
 					<div class="uploadSection">
-						<!-- accessed from - https://fontawesome.com/v4.7.0/icon/long-arrow-up -->
 						
 						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> &nbsp; Upload a photo</a>
 					</div>
 
 
 					<div class="uploadSection">
-						<!-- accessed from - https://fontawesome.com/v4.7.0/icon/book -->
 						
 						<a href="#" class="text-dark text-decoration-none"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;  Share</a>
 					</div>

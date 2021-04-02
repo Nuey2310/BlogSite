@@ -1,3 +1,9 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the front end layout for the login page
+	-- User Story: 1  -->
+	
 <?php
 	
 	session_start();

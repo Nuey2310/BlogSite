@@ -1,3 +1,7 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the front end layout for the webpages -->
 
 </body>
 

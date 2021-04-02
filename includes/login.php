@@ -1,3 +1,9 @@
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the functionality to login to the main website
+	-- User Story: 1 -->
+	
 <?php
 
 	session_start();

@@ -1,4 +1,11 @@
 <?php session_start(); ?>
+
+<!-- -- contributed by:
+	-- Name: Ishan Bhatia
+	-- Banner Number: B00835259
+	-- Implemented the front end layout for the header and included the navigation links including logout
+	-- User Story: 3 -->
+	
 <!DOCTYPE html>
 <html>
 <head>
