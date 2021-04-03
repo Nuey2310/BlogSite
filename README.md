@@ -84,6 +84,8 @@
 - Arjun Banga
    * Implemented User Story #7, displaying a list of users that follow you. The list is displayed on the right sidebar.
    * Implemented User Story #6, letting an administrator access the adminstrator interface that allows them to create new accounts with either microblog author or admin roles.
+   * Implemented User Story #11, creating a basic tweet share functionality that works similar to retweet. Pressing the share button once makes a user share the tweet and twice makes them unshare.
+
 
 - Miftahul Kashfy
    * Implemented User Story #5, searching tweets based on person's name or twitter handle

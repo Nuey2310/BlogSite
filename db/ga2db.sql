@@ -23,6 +23,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Follows` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `follower_id` int NOT NULL,
   `following_id` int NOT NULL,
   `dateFollowed` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP

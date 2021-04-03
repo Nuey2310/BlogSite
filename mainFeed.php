@@ -143,6 +143,11 @@
 				-- User Story: 5
 				-- User Story: 8
 
+				-- contributed by:
+				-- Name: Arjun Banga
+				-- Banner Number: B00852696
+				-- Modified the query and html created above to include retweets. 
+				-- User Story: 4
 			-->
 
 			
@@ -160,8 +165,8 @@
 	        	if (isset($_SESSION['search'])){
 	        		$value = $_SESSION['search'];
 	        		unset($_SESSION['search']);
-
-	        		$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
+					print_r($_SESSION);
+	        		$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text, Tweets.tweet_id FROM `Users`
 							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
 							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 							WHERE Users.firstname LIKE '%{$value}%' OR Users.lastname LIKE '%{$value}%' OR Users.handle LIKE '%{$value}%'
@@ -198,7 +203,7 @@
 							<div class="d-flex justify-content-around">
 								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
 								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+								<a href="includes/share.php?tweet=$tempData[tweet_id]" onclick="preventOpen(event)" class="text-dark text-decoration-none"><i class="fa fa-share"></i>Share</a>
 							</div>
 						</div>	
 
@@ -213,31 +218,43 @@
 						echo "<h4 style='color:DarkSlateBlue;'>Sorry, no tweeps found based on your searched user. <br><br> Try searching with another user!</h4>";
 					}
 				}else{
-					$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text FROM `Users`
-							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
-							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
-							WHERE Follows.follower_id = ".$_SESSION['userid']."
-							ORDER BY `Tweets`.`dateCreated` DESC";
-					$result = $dbconnection->query($querySQL);
-					$row = mysqli_num_rows($result);
-
-					if($row > 0){
-						for($i=1; $i <= $row; $i++){
-						$tempData = $result->fetch_assoc();
-
-						$heredoc = <<<END
-						<div class="feedContent" id = "tweep$i">
-								
-						<div class="d-flex image-container">
-
+					
+				//Modify the query to join with retweet query instead of tweets to include retweets in the result
+	        	$querySQL = "SELECT Users.firstname AS rt_firstname, Follows.following_id, Users.lastname as rt_lastname, tt.tweet_id, tt.author_id, tt.retweeter_id, tt.firstname, tt.lastname, tt.handle, tt.text, tt.dateCreated FROM `Users`
+				JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
+				RIGHT JOIN (SELECT Tweets.author_id, Tweets.tweet_id, Retweets.retweeter_id, Users.firstname, Users.lastname, Users.handle, Tweets.text, Tweets.dateCreated FROM Tweets LEFT JOIN Retweets ON Tweets.tweet_id = Retweets.tweet_id JOIN Users ON Tweets.author_id = Users.id) tt ON  `Users`.`id` = tt.`author_id` OR Users.id = tt.retweeter_id
+				WHERE Follows.follower_id = ".$_SESSION['userid']."
+				ORDER BY tt.`dateCreated` DESC";
+				$result = $dbconnection->query($querySQL);
+				$row = mysqli_num_rows($result);
+				$prev;
+				if($row > 0){
+					for($i=1; $i <= $row; $i++){
+					$tempData = $result->fetch_assoc();
+					$rtmessage;
+					//Add the retweeter message if it is retweeted
+					if($prev != $tempData && $tempData['retweeter_id'] == $tempData['following_id']) {
+						$rtmessage = "<span class = 'text-muted pl-2 pt-1'><i class='fa fa-share' aria-hidden='true'></i> $tempData[rt_firstname] $tempData[rt_lastname]</span>";
+					}
+					else if($tempData['author_id'] == $tempData['following_id'] && $prev['tweet_id'] != $tempData['tweet_id']) {
+						$rtmessage = null;
+					}
+					else {
+						continue;
+					}
+					$prev = $tempData;
+					$heredoc = <<<END
+						<div class="feedContent w-100" id = "tweep$i">
+						<div class="d-flex flex-row justify-content-between">
+						<div class="d-flex flex-fill image-container">
 						<div class="user-image">
 							<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
 						</div>
-
-						<div class="pl-2 pt-1">
-							<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
+						<div class="flex-fill pl-2 pt-1">
+							<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</span></h6>
 						</div>
-											
+						$rtmessage
+						</div>
 						</div>
 							<hr>
 							<div class = "tweepText" style = "height:3em; overflow: hidden">
@@ -246,14 +263,12 @@
 							</p>					
 							</div>
 							<hr>
-
 							<div class="d-flex justify-content-around">
 								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
 								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-share"></i> Share</a>
+								<a href="includes/share.php?tweet=$tempData[tweet_id]" onclick="preventOpen(event)" class="text-dark text-decoration-none"><i class="fa fa-share"></i>Share</a>
 							</div>
-						</div>	
-
+						</div>
 						END;
 
 						echo $heredoc;
@@ -265,8 +280,6 @@
 					}
 
 				}
-
-	        	
 			?>
 
 			</div>
@@ -335,6 +348,7 @@
 		    </div>
 
 		</div>
+
 
 
 
