@@ -15,5 +15,4 @@
 	if ($dbconnection->connect_error) {
 		die("No connection<br>" . $dbconnection->connect_error);
 	}
-
 ?>

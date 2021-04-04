@@ -219,7 +219,9 @@
 					}
 				}else{
 					
-				//Modify the query to join with retweet query instead of tweets to include retweets in the result
+				/* Contribution Notes - Arjun
+				Alter original query by Dhairy to include sub query that joins with the retweet table. Then filter the results to include the retweeted tweet only once. Include the retweeted symbol and the name of the retweeter with the html of the tweet.  
+				*/
 	        	$querySQL = "SELECT Users.firstname AS rt_firstname, Follows.following_id, Users.lastname as rt_lastname, tt.tweet_id, tt.author_id, tt.retweeter_id, tt.firstname, tt.lastname, tt.handle, tt.text, tt.dateCreated FROM `Users`
 				JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 				RIGHT JOIN (SELECT Tweets.author_id, Tweets.tweet_id, Retweets.retweeter_id, Users.firstname, Users.lastname, Users.handle, Tweets.text, Tweets.dateCreated FROM Tweets LEFT JOIN Retweets ON Tweets.tweet_id = Retweets.tweet_id JOIN Users ON Tweets.author_id = Users.id) tt ON  `Users`.`id` = tt.`author_id` OR Users.id = tt.retweeter_id

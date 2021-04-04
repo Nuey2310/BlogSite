@@ -75,6 +75,32 @@
    * Date accessed: 17 Feb 2021
    * Author: PHP.net contributors
 
+8. Bootstrap Form Control
+   * Create a form for admin interface, reused from my(Arjun's) assignment 1
+   * URL: https://getbootstrap.com/docs/5.0/forms/form-control/
+   * Date accessed: 27 Jan 2021
+   * Author: PHP.net
+
+9. Bootstrap Form Check
+   * Create a form for admin interface, reused from my(Arjun's) assignment 1
+   * URL: https://mdbootstrap.com/docs/standard/forms/checkbox/
+   * Date accessed: 27 March 2021
+   * Author: PHP.net
+
+10. JavaSript Set Attribute
+   * For changing height and overflow attributes for some browsers
+   * URL: https://www.w3schools.com/jsref/met_element_setattribute.asp
+   * Date accessed: 27 March 2021
+
+11. jQuery event stop propogation
+   * If the button is pressed then the tweet should not expand.
+   * URL: https://www.w3schools.com/jquery/event_stoppropagation.asp
+   * Date accessed: 3 April 2021
+
+12. MYSQLI:: real_escape_string
+   * URL: https://www.php.net/manual/en/mysqli.real-escape-string.php
+   * Accessed: 15 March 2021
+
 ## Features Implemented and Values learned:
 
 - Dhairy Raval
@@ -85,6 +111,8 @@
    * Implemented User Story #7, displaying a list of users that follow you. The list is displayed on the right sidebar.
    * Implemented User Story #6, letting an administrator access the adminstrator interface that allows them to create new accounts with either microblog author or admin roles.
    * Implemented User Story #11, creating a basic tweet share functionality that works similar to retweet. Pressing the share button once makes a user share the tweet and twice makes them unshare.
+
+   * What I learned: This assignment made me realize the difference between academic projects and real life applications. There are a lot more factors involved in creating production-ready applications.
 
 
 - Miftahul Kashfy

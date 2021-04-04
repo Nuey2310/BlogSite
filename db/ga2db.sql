@@ -85,5 +85,23 @@ INSERT INTO `Users` (`id`, `handle`, `firstname`, `lastname`, `isAdmin`, `passwo
 (2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
 (3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56');
 
+- --------------------------------------------------------
 
+--
+-- Table structure for table `Retweets`
+--
 
+CREATE TABLE `Retweets` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `tweet_id` int NOT NULL,
+  `retweeter_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `Retweets`
+--
+
+INSERT INTO `Retweets` (`id`, `tweet_id`, `retweeter_id`) VALUES
+(1, 9, 3),
+(2, 12, 3),
+(14, 11, 1);
