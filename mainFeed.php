@@ -4,10 +4,24 @@
 	-- Implemented the front end layout for the main feed and the micro-blogs  -->
 
 <?php
-
-	session_start();
 	require_once "includes/header.php";
 	require_once "includes/db.php";
+
+
+	/*
+		-- contributed by:
+		-- Name: Dhairy Raval
+		-- Banner Number: B00845519
+		--  Implemented the ability to follow other users. Also, considered cases where a user might try to follow someone twice, or follow themselves
+		-- User Story: 9
+	*/
+	//Adding the follow request into the database
+	if (isset($_POST['followReq'])) {
+
+		$followQuery = "INSERT INTO `Follows` (`follower_id`, `following_id`) VALUES ({$_SESSION['userid']}, (SELECT `id` FROM `users` WHERE handle = '{$_SESSION['newFollowReq']['handle']}'))";
+		$result = $dbconnection->query($followQuery);
+	}
+
 
 ?>
 
@@ -165,7 +179,7 @@
 	        	if (isset($_SESSION['search'])){
 	        		$value = $_SESSION['search'];
 	        		unset($_SESSION['search']);
-					print_r($_SESSION);
+					//print_r($_SESSION);
 	        		$querySQL = "SELECT Users.firstname, Users.lastname, Users.handle, Tweets.text, Tweets.tweet_id FROM `Users`
 							JOIN `Tweets` ON `Users`.`id` = `Tweets`.`author_id`
 							JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
@@ -175,9 +189,60 @@
 					$row = mysqli_num_rows($result);
 
 					if($row > 0){
-						for($i=1; $i <= $row; $i++){
-						$tempData = $result->fetch_assoc();
 
+						/*
+							-- contributed by:
+							-- Name: Dhairy Raval
+							-- Banner Number: B00845519
+							--  Implemented the ability to follow other users. Also, considered cases where a user might try to follow someone twice, or follow themselves
+							-- User Story: 9
+						*/
+						$followData = $result->fetch_assoc();
+						$_SESSION['newFollowReq'] = $followData;
+
+						//variable to store the ID for the user who the current user searched for
+						$searchedID = "(SELECT `id`FROM `Users` WHERE `handle` = '{$_SESSION['newFollowReq']['handle']}')";
+
+						//Accounting for when the user already follows the author
+						$verifyFollow = "SELECT `follower_id` FROM `Follows` WHERE `follower_id` = '{$_SESSION['userid']}' AND `following_id` = {$searchedID}";
+						$verifyRes = $dbconnection->query($verifyFollow);
+						$numRow = mysqli_num_rows($verifyRes);
+
+						/*Accounting for when the user searches for their own tweets,
+						*Here as well, We have to hide the follow functionality
+						*Unless, you want to follow yourself, You self-stalker!
+						*/
+						$verifyRes = $dbconnection->query($searchedID);
+						$tempID = $verifyRes->fetch_assoc();
+					
+						if($numRow == 0 && $_SESSION['userid'] != $tempID['id']){
+							$heredoc = <<<END
+						<div class="feedContent">
+							<div class="d-flex image-container">
+								<div class="user-image">
+									<img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+								</div>
+								<div class="pl-2 pt-1">
+									<h6>&nbsp; &nbsp; {$followData['firstname']} {$followData['lastname']} <span class = "text-muted">@{$followData['handle']}</h6>
+								</div>				
+							</div>
+
+							<form method="post" action="">
+								<input class="btn btn-success post-button" value = "Follow" type="submit" name="followReq">
+							</form>
+
+						</div>
+						END;
+						echo $heredoc;
+						}
+
+						for($i=1; $i <= $row; $i++){
+							if($i == 1){
+								$tempData = $followData;
+							}
+							else{
+								$tempData = $result->fetch_assoc();
+							}
 						$heredoc = <<<END
 						<div class="feedContent" id = "tweep$i">
 								

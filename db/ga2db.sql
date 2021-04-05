@@ -85,7 +85,7 @@ INSERT INTO `Users` (`id`, `handle`, `firstname`, `lastname`, `isAdmin`, `passwo
 (2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
 (3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56');
 
-- --------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `Retweets`

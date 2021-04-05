@@ -104,8 +104,9 @@
 ## Features Implemented and Values learned:
 
 - Dhairy Raval
-	* Implemented UserStory #4, adding the ability to see all the tweets of the people you follow. 	
-	(Credits to Arjun for helping me, implement a way to display the full tweet when the user clicks on it) 
+	* Implemented User Story #4, adding the ability to see all the tweets of the people you follow. 	
+	(Credits to Arjun for helping me, implement a way to display the full tweet when the user clicks on it)
+  * Implemented User Story #9, the ability to follow other users. Also, considered cases where a user might try to follow someone twice, or follow themselves
 
 - Arjun Banga
    * Implemented User Story #7, displaying a list of users that follow you. The list is displayed on the right sidebar.
