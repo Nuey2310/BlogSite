@@ -17,8 +17,8 @@
 //    }
 //}
 
-require_once "header.php";
-require_once "db.php";
+require_once "includes/header.php";
+require_once "includes/db.php";
 ?>
 
 <!-- Create account form created with some modification from my Assignment 1
@@ -97,7 +97,7 @@ EOF;
         }
         ?>
 
-        <form class="form-horizontal py-2" action="Edit_Profile.php" method="post">
+        <form class="form-horizontal py-2" action="includes/Edit_Profile.php" method="post">
 
             <div class="form-row py-2">
                 <div class="form-group">
@@ -141,9 +141,15 @@ END;
             }
         }
         ?>
+        <div  class = "text-center">
+            <h2 class="fw-light">Your micro-blogs</h2>
+        </div>
+        <div>
+
+        </div>
     </div>
 
 
 
 </main>
-<?php require_once "footer.php";
+<?php require_once "includes/footer.php";

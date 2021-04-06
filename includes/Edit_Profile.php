@@ -18,6 +18,6 @@ session_start();
         if (!$dbconnection->query($query)) {
             echo "<p>ERROR.</p>";
         }
-        header("Location: profile.php?passwordreset=1");
+        header("Location: ../profile.php?passwordreset=1");
 
 ?>

@@ -69,14 +69,14 @@
 		            Profile
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-		            <li><a class="dropdown-item" href="#">View my profile</a></li>
-		            <li><a class="dropdown-item" href="#">Another action</a></li>
+		            <li><a class="dropdown-item" href="profile.php">View my profile</a></li>
+		            <li><a class="dropdown-item" href="#">Manage blocks</a></li>
 		            <li><hr class="dropdown-divider"></li>
 		            <li><a class="dropdown-item" href="#">Something else here</a></li>
 		          </ul>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="logout.php" aria-disabled="true">Logout</a>
+		          <a class="nav-link" href="includes/logout.php" aria-disabled="true">Logout</a>
 		        </li>
 		      </ul>
 		      <form class="d-flex">
