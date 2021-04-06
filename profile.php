@@ -62,6 +62,7 @@ require_once "includes/db.php";
             $userType = 'Author';
         }
         ?>
+<!--        See user profile here-->
         <table width=100%, height="100px">
             <tr>
                 <td>Username</td>
@@ -113,6 +114,7 @@ require_once "includes/db.php";
             <h2 class="fw-light">Your micro-blogs</h2>
         </div>
         <?php
+//        See this user's all mirco-blogs
         $blogsQuery = "SELECT * FROM `Tweets` WHERE `author_id` = $uID ";
         $result = $dbconnection->query($blogsQuery);
         if (mysqli_num_rows($result) == 0) {
@@ -135,6 +137,7 @@ END;
             }
         }
         ?>
+<!--        See the list that this user has blocked-->
         <div class="text-center">
             <h2 class="fw-light">Your blocks</h2>
         </div>
@@ -161,7 +164,7 @@ EOF;
         </ul>
         <div>
             <form class="form-horizontal py-2" action="includes/block.php?block=1" method="post">
-
+<!--                Block user-->
                 <div class="form-row py-2">
                     <div class="form-group">
                         <label for="block" class="form-label">Block User</label>
@@ -173,6 +176,8 @@ EOF;
                 <?php
                 if (isset($_GET['blockstate'])) {
                     $state = $_GET['blockstate'];
+                    //                    If there is an error, through out an error message
+
                     if ($state == 0) ;
                     {
                         echo "<p style = 'color:red;'>Failed to block user, check the input username</p>";
@@ -186,7 +191,7 @@ EOF;
         </div>
         <div>
             <form class="form-horizontal py-2" action="includes/block.php?block=0" method="post">
-
+<!--                Remove the user form the block list-->
                 <div class="form-row py-2">
                     <div class="form-group">
                         <label for="unblock" class="form-label">Un-block user</label>
@@ -198,6 +203,7 @@ EOF;
                 <?php
                 if (isset($_GET['unblockstate'])) {
                     $state = $_GET['unblockstate'];
+//                    If there is an error, through out an error message
                     if ($state == 0) ;
                     {
                         echo "<p style = 'color:red;'>Failed to block user, check the input username</p>";
