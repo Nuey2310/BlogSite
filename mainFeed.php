@@ -55,8 +55,8 @@
 				<hr>
 
 				<div class="text-center">
-					<a href="" class="font-weight-bold text-decoration-none text-center">
-						Visit My Profile
+					<a href="includes/profile.php" class="font-weight-bold text-decoration-none text-center">
+						My Profile
 					</a>
 				</div>
 
@@ -188,7 +188,7 @@
 						</div>
 
 						<div class="pl-2 pt-1">
-							<h6>&nbsp; &nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
+							<h6>&nbsp;&nbsp; {$tempData['firstname']} {$tempData['lastname']} <span class = "text-muted">@{$tempData['handle']}</h6>
 						</div>
 											
 						</div>
@@ -199,12 +199,6 @@
 							</p>					
 							</div>
 							<hr>
-
-							<div class="d-flex justify-content-around">
-								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-heart"></i> Like</a>
-								<a href="#" class="text-dark text-decoration-none"><i class="fa fa-comment"></i> Comment</a>
-								<a href="includes/share.php?tweet=$tempData[tweet_id]" onclick="preventOpen(event)" class="text-dark text-decoration-none"><i class="fa fa-share"></i>Share</a>
-							</div>
 						</div>	
 
 						END;

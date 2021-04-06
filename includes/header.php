@@ -57,7 +57,7 @@
 		    <div class="collapse navbar-collapse" id="navbarScroll">
 		      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="mainFeed.php">Home</a>
+		          <a class="nav-link active" aria-current="page" href="../mainFeed.php">Home</a>
 		        </li>
 				<?php if($_SESSION['admin'] == 1) { ?>
 		        <li class="nav-item">
@@ -69,14 +69,14 @@
 		            Profile
 		          </a>
 		          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-		            <li><a class="dropdown-item" href="#">Action</a></li>
+		            <li><a class="dropdown-item" href="#">View my profile</a></li>
 		            <li><a class="dropdown-item" href="#">Another action</a></li>
 		            <li><hr class="dropdown-divider"></li>
 		            <li><a class="dropdown-item" href="#">Something else here</a></li>
 		          </ul>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="includes/logout.php" aria-disabled="true">Logout</a>
+		          <a class="nav-link" href="logout.php" aria-disabled="true">Logout</a>
 		        </li>
 		      </ul>
 		      <form class="d-flex">
