@@ -38,11 +38,11 @@ require_once "includes/db.php";
         Accessed: January 27 2021
         Author: The Bootstrap Team -->
         <?php
-            if (isset($_GET['passwordreset'])){
-                if ($_GET['passwordreset']==1){
-                    echo "<script>alert('Password Reseted');</script>";
-                }
+        if (isset($_GET['passwordreset'])) {
+            if ($_GET['passwordreset'] == 1) {
+                echo "<script>alert('Password Reseted');</script>";
             }
+        }
         ?>
         <?php
         $uID = -1;
@@ -88,12 +88,6 @@ require_once "includes/db.php";
         </table>
         <?php
         if ($adminCode == 1) {
-            echo
-            <<<EOF
-                <a href="" class="font-weight-bold text-decoration-none text-center">
-            Edit profile
-        </a>
-EOF;
         }
         ?>
 
@@ -115,7 +109,7 @@ EOF;
                 </div>
         </form>
         <br>
-        <div  class = "text-center">
+        <div class="text-center">
             <h2 class="fw-light">Your micro-blogs</h2>
         </div>
         <?php
@@ -127,7 +121,7 @@ EOF;
             while ($row = $result->fetch_assoc()) {
                 $date = $row['dateCreated'];
                 $content = $row['text'];
-                echo"<br> $date";
+                echo "<br> $date";
                 $heredoc = <<<END
 							<hr>
 							<div class = "tweepText" style = "height:3em; overflow: hidden">
@@ -141,7 +135,7 @@ END;
             }
         }
         ?>
-        <div  class = "text-center">
+        <div class="text-center">
             <h2 class="fw-light">Your blocks</h2>
         </div>
         <?php
@@ -151,13 +145,13 @@ END;
         if (mysqli_num_rows($blockResult) == 0) {
             $blockArray = null;
         } else {
-            $row = $blockResult->fetch_assoc();
-            $blockString = $row['blocks'];
-            $blockArray = explode(";",$blockString);
-            ?>
+        $row = $blockResult->fetch_assoc();
+        $blockString = $row['blocks'];
+        $blockArray = explode(";", $blockString);
+        ?>
         <ul class="list-group list-group-flush">
             <?php
-            foreach($blockArray as $value){
+            foreach ($blockArray as $value) {
                 echo <<<EOF
                 <li class= "list-group-item""> $value </li>
 EOF;
@@ -166,19 +160,24 @@ EOF;
             ?>
         </ul>
         <div>
-            <form class = "form-horizontal py-2" action = "includes/block.php?block=1" method = "post">
+            <form class="form-horizontal py-2" action="includes/block.php?block=1" method="post">
 
                 <div class="form-row py-2">
-                    <div class = "form-group">
-                        <label for= "block" class="form-label">Block User</label>
-                        <input id= "block" name= "block" type="text" class="form-control" placeholder = "Enter user's handle">
+                    <div class="form-group">
+                        <label for="block" class="form-label">Block User</label>
+                        <input id="block" name="block" type="text" class="form-control"
+                               placeholder="Enter user's handle">
                     </div>
                 </div>
                 <br>
                 <?php
-                    if (isset($_GET['unblockstate'])==0){
+                if (isset($_GET['blockstate'])) {
+                    $state = $_GET['blockstate'];
+                    if ($state == 0) ;
+                    {
                         echo "<p style = 'color:red;'>Failed to block user, check the input username</p>";
                     }
+                }
                 ?>
                 <div class="btn-group d-flex justify-content-right w-25">
                     <button name="send" type="submit" class="btn btn-dark">Block</button>
@@ -186,21 +185,26 @@ EOF;
             </form>
         </div>
         <div>
-            <form class = "form-horizontal py-2" action = "includes/block.php?block=0" method = "post">
+            <form class="form-horizontal py-2" action="includes/block.php?block=0" method="post">
 
                 <div class="form-row py-2">
-                    <div class = "form-group">
-                        <label for= "unblock" class="form-label">Un-block user</label>
-                        <input id= "unblock" name= "unblock" type="text" class="form-control" placeholder = "Enter user's handle">
+                    <div class="form-group">
+                        <label for="unblock" class="form-label">Un-block user</label>
+                        <input id="unblock" name="unblock" type="text" class="form-control"
+                               placeholder="Enter user's handle">
                     </div>
                 </div>
                 <br>
                 <?php
-                if (isset($_GET['blockstate'])==0){
-                    echo "<p style = 'color:red;'>Failed to un-block user, check the input username</p>";
+                if (isset($_GET['unblockstate'])) {
+                    $state = $_GET['unblockstate'];
+                    if ($state == 0) ;
+                    {
+                        echo "<p style = 'color:red;'>Failed to block user, check the input username</p>";
+                    }
                 }
                 ?>
-                <div class="btn-group d-flex justify-content-right w-25">
+                <div name = "blockList" class="btn-group d-flex justify-content-right w-25">
                     <button name="send" type="submit" class="btn btn-dark">Un-block</button>
                 </div>
             </form>
@@ -208,9 +212,8 @@ EOF;
     </div>
 
 
-
 </main>
 
 <?php
-    require_once "includes/footer.php";
+require_once "includes/footer.php";
 ?>

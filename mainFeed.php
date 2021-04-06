@@ -31,16 +31,16 @@ if (isset($_POST['followReq'])) {
 <!--Author: W3School editor-->
 <!--Date accessed: April 6th, 2021-->
 <?php
-    $userHandel = $_SESSION['userid'];
-    $blockQurey = "SELECT*FROM `Users` WHERE `id` LIKE $userHandel";
-    $blockResult = $dbconnection->query($blockQurey);
+$userHandel = $_SESSION['userid'];
+$blockQurey = "SELECT*FROM `Users` WHERE `id` LIKE $userHandel";
+$blockResult = $dbconnection->query($blockQurey);
 if (mysqli_num_rows($blockResult) == 0) {
     $blockArray = null;
 } else {
     $row = $blockResult->fetch_assoc();
     $blockString = $row['blocked'];
-    $blockArray = explode(";",$blockString);
-    print_r($blockArray);
+    $blockArray = explode(";", $blockString);
+//    print_r($blockArray);
 }
 ?>
 
@@ -68,12 +68,19 @@ if (mysqli_num_rows($blockResult) == 0) {
                     -- User Story: 5
                     -- User Story: 8
 
+                    -- Name: Neuer Gao
+                    -- Banner Number: B00785904
+                    -- Implemented the functionality of user profile page, user can edit their password now
+                    -- Implemented the functionality of block/un-block function.
+                    -- User Story: 2
+                    -- User Story: 12
                 -->
 
 
             <div class="col-md-2 left-col-content">
                 <div class="upper-content text-center">
-                    <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                    <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="">
                     <h5 class="text-center pt-3">
                         <?php
                         echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];
@@ -137,30 +144,37 @@ if (mysqli_num_rows($blockResult) == 0) {
                     <div class="d-flex justify-content-around">
                         <div class="uploadSection">
 
-                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> &nbsp; Write a tweep</a>
+                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-pencil-square-o"
+                                                                                  aria-hidden="true"></i> &nbsp; Write a
+                                tweep</a>
                         </div>
 
                         <div class="uploadSection">
 
-                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-long-arrow-up" aria-hidden="true"></i> &nbsp; Upload a photo</a>
+                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-long-arrow-up"
+                                                                                  aria-hidden="true"></i> &nbsp; Upload
+                                a photo</a>
                         </div>
 
 
                         <div class="uploadSection">
 
-                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;  Share</a>
+                            <a href="#" class="text-dark text-decoration-none"><i class="fa fa-book"
+                                                                                  aria-hidden="true"></i>&nbsp;
+                                Share</a>
                         </div>
                     </div>
 
                     <hr>
                     <form method="post" action="includes/process-tweep.php">
-                        <textarea name="tweepText" id="" cols="3" rows="3" class="form-control" placeholder="Write A Tweep...." ></textarea>
-                        <input class="btn btn-primary post-button" value = "Submit" type="submit" name="">
+                        <textarea name="tweepText" id="" cols="3" rows="3" class="form-control"
+                                  placeholder="Write A Tweep...."></textarea>
+                        <input class="btn btn-primary post-button" value="Submit" type="submit" name="">
                     </form>
 
                 </div>
 
-                <div class="main-post-container" id = "posts">
+                <div class="main-post-container" id="posts">
 
                     <!--
                         -- contributed by:
@@ -195,7 +209,7 @@ if (mysqli_num_rows($blockResult) == 0) {
                         Date accessed: April 1st 2021
                     */
                     // Session variable for search that was set is retrieved and unset after database is searched for tweets
-                    if (isset($_SESSION['search'])){
+                    if (isset($_SESSION['search'])) {
                         $value = $_SESSION['search'];
                         unset($_SESSION['search']);
                         //print_r($_SESSION);
@@ -207,7 +221,7 @@ if (mysqli_num_rows($blockResult) == 0) {
                         $result = $dbconnection->query($querySQL);
                         $row = mysqli_num_rows($result);
 
-                        if($row > 0){
+                        if ($row > 0) {
 
                             /*
                                 -- contributed by:
@@ -234,7 +248,7 @@ if (mysqli_num_rows($blockResult) == 0) {
                             $verifyRes = $dbconnection->query($searchedID);
                             $tempID = $verifyRes->fetch_assoc();
 
-                            if($numRow == 0 && $_SESSION['userid'] != $tempID['id']){
+                            if ($numRow == 0 && $_SESSION['userid'] != $tempID['id']) {
                                 $heredoc = <<<END
 						<div class="feedContent">
 							<div class="d-flex image-container">
@@ -255,11 +269,10 @@ if (mysqli_num_rows($blockResult) == 0) {
                                 echo $heredoc;
                             }
 
-                            for($i=1; $i <= $row; $i++){
-                                if($i == 1){
+                            for ($i = 1; $i <= $row; $i++) {
+                                if ($i == 1) {
                                     $tempData = $followData;
-                                }
-                                else{
+                                } else {
                                     $tempData = $result->fetch_assoc();
                                 }
                                 $heredoc = <<<END
@@ -294,15 +307,15 @@ if (mysqli_num_rows($blockResult) == 0) {
 						END;
 
                                 //if user found
-                                    echo "$heredoc";
+                                echo "$heredoc";
 
                             }
 
-                        }else{
+                        } else {
                             //if user not found
                             echo "<h4 style='color:DarkSlateBlue;'>Sorry, no tweeps found based on your searched user. <br><br> Try searching with another user!</h4>";
                         }
-                    }else{
+                    } else {
 
                         /* Contribution Notes - Arjun
                         Alter original query by Dhairy to include sub query that joins with the retweet table. Then filter the results to include the retweeted tweet only once. Include the retweeted symbol and the name of the retweeter with the html of the tweet.
@@ -310,23 +323,21 @@ if (mysqli_num_rows($blockResult) == 0) {
                         $querySQL = "SELECT Users.firstname AS rt_firstname, Follows.following_id, Users.lastname as rt_lastname, tt.tweet_id, tt.author_id, tt.retweeter_id, tt.firstname, tt.lastname, tt.handle, tt.text, tt.dateCreated FROM `Users`
 				JOIN `Follows` ON `Users`.`id` = `Follows`.`following_id`
 				RIGHT JOIN (SELECT Tweets.author_id, Tweets.tweet_id, Retweets.retweeter_id, Users.firstname, Users.lastname, Users.handle, Tweets.text, Tweets.dateCreated FROM Tweets LEFT JOIN Retweets ON Tweets.tweet_id = Retweets.tweet_id JOIN Users ON Tweets.author_id = Users.id) tt ON  `Users`.`id` = tt.`author_id` OR Users.id = tt.retweeter_id
-				WHERE Follows.follower_id = ".$_SESSION['userid']."
+				WHERE Follows.follower_id = " . $_SESSION['userid'] . "
 				ORDER BY tt.`dateCreated` DESC";
                         $result = $dbconnection->query($querySQL);
                         $row = mysqli_num_rows($result);
                         $prev;
-                        if($row > 0){
-                            for($i=1; $i <= $row; $i++){
+                        if ($row > 0) {
+                            for ($i = 1; $i <= $row; $i++) {
                                 $tempData = $result->fetch_assoc();
                                 $rtmessage;
                                 //Add the retweeter message if it is retweeted
-                                if($prev != $tempData && $tempData['retweeter_id'] == $tempData['following_id']) {
+                                if ($prev != $tempData && $tempData['retweeter_id'] == $tempData['following_id']) {
                                     $rtmessage = "<span class = 'text-muted pl-2 pt-1'><i class='fa fa-share' aria-hidden='true'></i> $tempData[rt_firstname] $tempData[rt_lastname]</span>";
-                                }
-                                else if($tempData['author_id'] == $tempData['following_id'] && $prev['tweet_id'] != $tempData['tweet_id']) {
+                                } else if ($tempData['author_id'] == $tempData['following_id'] && $prev['tweet_id'] != $tempData['tweet_id']) {
                                     $rtmessage = null;
-                                }
-                                else {
+                                } else {
                                     continue;
                                 }
                                 $prev = $tempData;
@@ -364,14 +375,13 @@ if (mysqli_num_rows($blockResult) == 0) {
                                     Author: W3School editor
                                     Date accessed: April 6th, 2021
                                 */
-                                if (!in_array($tempData['handle'], $blockArray)){
+                                if (!in_array($tempData['handle'], $blockArray)) {
                                     echo "$heredoc";
                                 }
 //                                echo $heredoc;
 
                             }
-                        }
-                        else{
+                        } else {
                             echo "<div class = 'px-3'><h3>Not following anyone yet?<br><br> What are you waiting for?<br> Follow other people to look at their tweets!</h3></div>";
                         }
 
@@ -381,9 +391,7 @@ if (mysqli_num_rows($blockResult) == 0) {
                 </div>
 
 
-
-
-            </div>		<!-- mid column content closed-->
+            </div>        <!-- mid column content closed-->
 
 
             <div class="col-md-3">
@@ -400,27 +408,25 @@ if (mysqli_num_rows($blockResult) == 0) {
                             -->
                             <?php
                             $sql = "SELECT Users.handle, Users.firstname, Users.lastname FROM Follows JOIN Users ON Follows.follower_id = Users.id
-				WHERE Follows.following_id = ".$_SESSION['userid']."
+				WHERE Follows.following_id = " . $_SESSION['userid'] . "
 				ORDER BY Follows.dateFollowed DESC";
                             $result = $dbconnection->query($sql);
                             $row = mysqli_num_rows($result);
-                            if($row>0) {
-                                for($i=1; $i <= $row; $i++){
+                            if ($row > 0) {
+                                for ($i = 1; $i <= $row; $i++) {
                                     $res = $result->fetch_assoc();
                                     $hdoc = <<<END
 								<li class="list-group-item"><a href="#" class="text-decoration-none text-dark">{$res['firstname']} {$res['lastname']} <span class = "text-muted">@{$res['handle']}</span></a></li>
 						END;
                                     echo $hdoc;
                                 }
-                            }
-                            else {
+                            } else {
                                 echo "<div class = 'text-muted text-center'>You have no followers.</div";
                             }
 
                             ?>
                         </ul>
                     </div>
-
 
 
                     <!-- follower list ends here -->
@@ -433,19 +439,22 @@ if (mysqli_num_rows($blockResult) == 0) {
                         <h3 class="text-center">Sponsored</h3>
 
                         <ul class="list-group list-group-flush ">
-                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor Link</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor Link</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor Link</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor Link</a></li>
-                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor Link</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor
+                                    Link</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor
+                                    Link</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor
+                                    Link</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor
+                                    Link</a></li>
+                            <li class="list-group-item"><a href="#" class="text-decoration-none text-dark">Sponsor
+                                    Link</a></li>
                         </ul>
 
                     </div>
                 </div>
 
             </div>
-
-
 
 
         </div>

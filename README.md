@@ -101,6 +101,10 @@
    * URL: https://www.php.net/manual/en/mysqli.real-escape-string.php
    * Accessed: 15 March 2021
 
+13. W3School PHP Array
+   * URL: https://www.w3school.com.cn/php/php_arrays.asp
+   * Accessed: 7 Apr 2021
+
 ## Features Implemented and Values learned:
 
 - Dhairy Raval
@@ -128,5 +132,11 @@
    * Implemented the user story #3, allowing the user to logout from the website to prevent unauthorized access. 
    * Implemented the front-end layout for the login page and the main website.
    * What I learned: This assignment allowed me to use my theoritical knowledge to create a basic website which could potentially have real world applications. It gave me an idea of how social media platforms operate on a basic level and what steps they take to protect the user data by following proper security guidelines. It also helped me to get a hands on experience of working with a development team.   
+- Neuer Gao (B00785904)
+    *User Story #2Implemented the functionality of user profile page, user can edit their password now
+    *User Story #12Implemented the functionality of block/un-block function.
+    *Fixed some bugs in other files.
+    *What I learned: I learned how fast does JSON helps us to process data. I didn't use JSON here, so I waste a lot of time. I was also thinking about better database structure, we are using multiple JOIN here, that may be a challenge for server performance when data size becomes very large. I also learnt many mew PHP array method.
+
 
 

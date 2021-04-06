@@ -39,39 +39,41 @@ require_once "includes/db.php";
       https://getbootstrap.com/docs/5.0/forms/form-control/
       Accessed: January 27 2021
       Author: The Bootstrap Team -->
-      <form class = "form-horizontal py-2" action = "./includes/create-account.php?verified=1" method = "post">
-         
-         <div class="form-row py-2">
-            <div class = "form-group">
-                <label for= "username" class="form-label">Username</label> 
-                <input id= "username" name= "username" type="text" class="form-control" placeholder = "Enter username">
+        <form class="form-horizontal py-2" action="./includes/create-account.php?verified=1" method="post">
+
+            <div class="form-row py-2">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username" name="username" type="text" class="form-control" placeholder="Enter username">
+                </div>
+                <div class="input-group">
+                    <label for="firstname" class="form-label">Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input id="firstname" name="firstname" type="text" class="form-control"
+                           placeholder="Enter first name">
+                    <input id="lastname" name="lastname" type="text" class="form-control" placeholder="Enter last name">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" name="password" type="text" class="form-control"
+                           placeholder="Enter password..">
+                </div>
+                <!-- Bootstrap Form Check
+                Link:  https://mdbootstrap.com/docs/standard/forms/checkbox/
+                Accessed: March 27 2021
+                Author: The Bootstrap Team-->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="admin" id="admin">
+                    <label class="form-check-label" for="admin">Administrator</label>
+                </div>
             </div>
-            <div class = "input-group">
-                    <label for= "firstname" class="form-label">Full Name</label>                 
-            </div>
-            <div class = "input-group">
-                    <input id= "firstname" name= "firstname" type="text" class="form-control" placeholder = "Enter first name">
-                    <input id= "lastname" name= "lastname" type="text" class="form-control" placeholder = "Enter last name">
-            </div>
-            <div class = "form-group">
-                    <label for= "password" class="form-label">Password</label> 
-                    <input id= "password" name= "password" type="text" class="form-control" placeholder = "Enter password..">
-            </div>
-            <!-- Bootstrap Form Check
-            Link:  https://mdbootstrap.com/docs/standard/forms/checkbox/
-            Accessed: March 27 2021
-            Author: The Bootstrap Team-->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" name = "admin" id="admin">
-                <label class="form-check-label" for="admin">Administrator</label>
-            </div>
-        </div>
-        <br>
-         <div class="btn-group d-flex justify-content-right w-25">
+            <br>
+            <div class="btn-group d-flex justify-content-right w-25">
                 <button name="send" type="submit" class="btn btn-dark">Create</button>
                 <button name="discard" type="reset" class="btn btn-secondary">Cancel</button>
-         </div>
-      </form>
+            </div>
+        </form>
    </div>
 
 
