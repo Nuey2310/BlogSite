@@ -24,6 +24,25 @@ if (isset($_POST['followReq'])) {
 
 
 ?>
+<!--Added block function, aka US-12, part2-->
+<!--by: Neuer Gao, B00785904-->
+<!--Citation:-->
+<!--URL:https://www.w3school.com.cn/php/func_array_in_array.asp-->
+<!--Author: W3School editor-->
+<!--Date accessed: April 6th, 2021-->
+<?php
+    $userHandel = $_SESSION['userid'];
+    $blockQurey = "SELECT*FROM `Users` WHERE `id` LIKE $userHandel";
+    $blockResult = $dbconnection->query($blockQurey);
+if (mysqli_num_rows($blockResult) == 0) {
+    $blockArray = null;
+} else {
+    $row = $blockResult->fetch_assoc();
+    $blockString = $row['blocked'];
+    $blockArray = explode(";",$blockString);
+    print_r($blockArray);
+}
+?>
 
 <main class="main-page-body">
 
@@ -69,7 +88,7 @@ if (isset($_POST['followReq'])) {
                     <hr>
 
                     <div class="text-center">
-                        <a href="" class="font-weight-bold text-decoration-none text-center">
+                        <a href="profile.php" class="font-weight-bold text-decoration-none text-center">
                             Visit My Profile
                         </a>
                     </div>
@@ -275,7 +294,8 @@ if (isset($_POST['followReq'])) {
 						END;
 
                                 //if user found
-                                echo $heredoc;
+                                    echo "$heredoc";
+
                             }
 
                         }else{
@@ -337,8 +357,17 @@ if (isset($_POST['followReq'])) {
 							</div>
 						</div>
 						END;
-
-                                echo $heredoc;
+                                /*Added block function, aka US-12, part2
+                                    by: Neuer Gao, B00785904
+                                    Citation:
+                                    URL:https://www.w3school.com.cn/php/func_array_in_array.asp
+                                    Author: W3School editor
+                                    Date accessed: April 6th, 2021
+                                */
+                                if (!in_array($tempData['handle'], $blockArray)){
+                                    echo "$heredoc";
+                                }
+//                                echo $heredoc;
 
                             }
                         }

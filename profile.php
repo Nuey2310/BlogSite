@@ -142,14 +142,75 @@ END;
         }
         ?>
         <div  class = "text-center">
-            <h2 class="fw-light">Your micro-blogs</h2>
+            <h2 class="fw-light">Your blocks</h2>
+        </div>
+        <?php
+        $userHandel = $_SESSION['userid'];
+        $blockQurey = "SELECT*FROM `Users` WHERE `id` LIKE $userHandel";
+        $blockResult = $dbconnection->query($blockQurey);
+        if (mysqli_num_rows($blockResult) == 0) {
+            $blockArray = null;
+        } else {
+            $row = $blockResult->fetch_assoc();
+            $blockString = $row['blocks'];
+            $blockArray = explode(";",$blockString);
+            ?>
+        <ul class="list-group list-group-flush">
+            <?php
+            foreach($blockArray as $value){
+                echo <<<EOF
+                <li class= "list-group-item""> $value </li>
+EOF;
+            }
+            }
+            ?>
+        </ul>
+        <div>
+            <form class = "form-horizontal py-2" action = "includes/block.php?block=1" method = "post">
+
+                <div class="form-row py-2">
+                    <div class = "form-group">
+                        <label for= "block" class="form-label">Block User</label>
+                        <input id= "block" name= "block" type="text" class="form-control" placeholder = "Enter user's handle">
+                    </div>
+                </div>
+                <br>
+                <?php
+                    if (isset($_GET['unblockstate'])==0){
+                        echo "<p style = 'color:red;'>Failed to block user, check the input username</p>";
+                    }
+                ?>
+                <div class="btn-group d-flex justify-content-right w-25">
+                    <button name="send" type="submit" class="btn btn-dark">Block</button>
+                </div>
+            </form>
         </div>
         <div>
+            <form class = "form-horizontal py-2" action = "includes/block.php?block=0" method = "post">
 
+                <div class="form-row py-2">
+                    <div class = "form-group">
+                        <label for= "unblock" class="form-label">Un-block user</label>
+                        <input id= "unblock" name= "unblock" type="text" class="form-control" placeholder = "Enter user's handle">
+                    </div>
+                </div>
+                <br>
+                <?php
+                if (isset($_GET['blockstate'])==0){
+                    echo "<p style = 'color:red;'>Failed to un-block user, check the input username</p>";
+                }
+                ?>
+                <div class="btn-group d-flex justify-content-right w-25">
+                    <button name="send" type="submit" class="btn btn-dark">Un-block</button>
+                </div>
+            </form>
         </div>
     </div>
 
 
 
 </main>
-<?php require_once "includes/footer.php";
+
+<?php
+    require_once "includes/footer.php";
+?>
