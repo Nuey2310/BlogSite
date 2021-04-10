@@ -5,10 +5,10 @@
 	
 <?php
 
-	$hostservername = "localhost"; 
-	$username = "root";
-	$password = "root";
-	$dbname = "2170db";
+	$hostservername = "db.cs.dal.ca";
+	$username = "jiahaog";
+	$password = "p358RDHPAJWNpqom8Caa9bxir";
+	$dbname = "jiahaog";
 
 	$dbconnection = new mysqli($hostservername, $username, $password, $dbname);
 
