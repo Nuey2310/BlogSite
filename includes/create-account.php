@@ -33,7 +33,7 @@ if($_GET['verified'] != 1) {
         $lastname = mysqli_real_escape_string($dbconnection, htmlspecialchars(stripslashes(trim($_POST['lastname']))));
         $admin = isset($_POST['admin']) ? 1 : 0;
         //Insert query
-        $sql = "INSERT INTO Users (handle, firstname, lastname, isAdmin, password) VALUES ('$username','$firstname', '$lastname', '$admin', '$password')";
+        $sql = "INSERT INTO Users (handle, firstname, lastname, isAdmin, password, blocked, blocks) VALUES ('$username','$firstname', '$lastname', '$admin', '$password', '', '')";
         if (!$dbconnection->query($sql)) {
             echo "<p>ERROR.</p>";
         }
