@@ -118,6 +118,7 @@
    * Implemented User Story #11, creating a basic tweet share functionality that works similar to retweet. Pressing the share button once makes a user share the tweet and twice makes them unshare.
 
    * What I learned: This assignment made me realize the difference between academic projects and real life applications. There are a lot more factors involved in creating production-ready applications.
+   * Link: https://web.cs.dal.ca/~banga/GA2/
 
 
 - Miftahul Kashfy
