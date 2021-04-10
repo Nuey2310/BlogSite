@@ -73,7 +73,9 @@ CREATE TABLE `Users` (
   `lastname` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
-  `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dateCreated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `blocked` varchar(255) NOT NULL,
+  `blocks` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -81,9 +83,9 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `handle`, `firstname`, `lastname`, `isAdmin`, `password`, `dateCreated`) VALUES
-(1, 'yoda', 'Yoda', NULL, 1, '1234', '2021-03-25 18:25:19'),
-(2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14'),
-(3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56');
+(1, 'yoda', 'Yoda', NULL, 1, '1234', '2021-03-25 18:25:19', '', ''),
+(2, 'jediluke', 'Luke', 'Skywalker', 0, '1234', '2021-03-25 18:26:14', '', ''),
+(3, 'ReyReal', 'Rey', 'Skywalker', 0, '1234', '2021-03-25 18:26:56', '', ''),
 
 -- --------------------------------------------------------
 
