@@ -112,6 +112,9 @@
 	(Credits to Arjun for helping me, implement a way to display the full tweet when the user clicks on it)
   * Implemented User Story #9, the ability to follow other users. Also, considered cases where a user might try to follow someone twice, or follow themselves
 
+  * What I learned: While working on this project I learned more about php and how to effectively work as a group
+   * Link: https://web.cs.dal.ca/~draval/GA2/
+
 - Arjun Banga
    * Implemented User Story #7, displaying a list of users that follow you. The list is displayed on the right sidebar.
    * Implemented User Story #6, letting an administrator access the adminstrator interface that allows them to create new accounts with either microblog author or admin roles.
