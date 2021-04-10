@@ -71,8 +71,6 @@
 		          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 		            <li><a class="dropdown-item" href="profile.php">View my profile</a></li>
 		            <li><a class="dropdown-item" href="profile.php#blockList">Manage blocks</a></li>
-		            <li><hr class="dropdown-divider"></li>
-		            <li><a class="dropdown-item" href="#">Something else here</a></li>
 		          </ul>
 		        </li>
 		        <li class="nav-item">

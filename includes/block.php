@@ -1,3 +1,7 @@
+<!--           Contributed by: Neuer Gao
+            -- Banner Number: B00785904
+            -- Implemented the functionality of block/un-block function.
+            -- User Story: 12 -->
 <?php
 require_once "header.php";
 require_once "db.php";

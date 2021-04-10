@@ -1,31 +1,14 @@
-<!--
-	-- contributed by:
-	-- Name: Arjun Banga
-	-- Banner Number: B00852696
-	--  Implemented the administrative interface which lets an admin create a new account with either microblog author or admin role. The admin interface can only be accessed once a user is logged in AND is an admin
-	-- User Story: 6
--->
+<!-- --   Contributed by: Neuer Gao
+         -- Banner Number: B00785904
+        -- Implemented the functionality of user profile page, user can edit their password now
+        -- User Story: 2 -->
 
 <?php
-//if($_POST['verified'] != 1) {
-//    if (!isset($_SESSION['handle'])) {
-//        header("Location: ../index.php?noaccess=1");
-//        die();
-//    }
-//    else if($_SESSION['admin'] == 0) {
-//        header("Location: ../mainFeed.php?noaccess=1");
-//    }
-//}
+
 
 require_once "includes/header.php";
 require_once "includes/db.php";
 ?>
-
-<!-- Create account form created with some modification from my Assignment 1
-	Arjun Banga, Assignment 1: CSCI 2170 (Winter 2021), Faculty of Computer Science,
-	Dalhousie University, Available online on GitLab at: https://git.cs.dal.ca/courses/2021-winter/csci-2170/a1/banga
-	Date Accessed: March 27, 2021.
--->
 
 <main id="pg-main-content">
     <br>
