@@ -7,11 +7,11 @@ session_start();
         Link: https://www.php.net/manual/en/mysqli.real-escape-string.php
         Accessed: 15 March 2021
         */
-        echo "Hello";
+//        echo "Hello";
         $password =  mysqli_real_escape_string($dbconnection, htmlspecialchars(stripslashes(trim($_POST['password']))));
-        echo "$password";
+//        echo "$password";
 
-        //Insert query
+//Insert query
         $uId = $_SESSION['userid'];
         echo "$uId";
         $query = "UPDATE `Users` SET `password` = '$password' WHERE `Users`.`id` = $uId";

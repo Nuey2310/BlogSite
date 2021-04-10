@@ -12,6 +12,12 @@ if (isset($_GET['block'])) {
         $thisUser = $row1['handle'];
         $userListString = $userListString . ";" . $thisUser;
     }
+    /*
+     * Accessed: 15 March 2021
+        W3School PHP Array
+        URL: https://www.w3school.com.cn/php/php_arrays.asp
+        Accessed: 7 Apr 202
+     */
     echo "$userListString";
     $userListArray = explode(";", $userListString);
 
@@ -26,7 +32,7 @@ if (isset($_GET['block'])) {
             $blockArray = explode(";", $blockString);
 //        print_r($blockArray);
         }
-        $blockUser = $_POST['block'];
+        $blockUser = trim(stripslashes(htmlspecialchars($_POST['block'])));
         if (in_array($blockUser, $userListArray)) {
             echo "this will block a user" . "$blockUser" . " <br>";
             $queryEd = "SELECT*FROM `Users` WHERE `handle` LIKE '$blockUser'";
@@ -69,7 +75,8 @@ if (isset($_GET['block'])) {
     } elseif ($_GET['block'] == 0) {
         echo "this will un-block a user";
         // Check if this user is in user list
-        $unblockUser = $_POST['unblock'];
+        $unblockUser = trim(stripslashes(htmlspecialchars($_POST['unblock'])));
+
         if (in_array($unblockUser, $userListArray)) {
             //If the user have blocked this user
             $uId = $_SESSION['userid'];
