@@ -130,6 +130,8 @@
 
    * What I learned: This assignment seemed more fun to me. Making the JediTweeps applications helped me realize how what I am
    					 learning now can one day be implemented in real life practices. 
+  * Link: https://web.cs.dal.ca/~kashfy/GA2/
+
 
 - Ishan Bhatia (B00835259)
    * Implemented the user story #1, allowing the user to login to the website and incteract with different actions (Credits to Dhairy for assisting in regenerating the session id)
