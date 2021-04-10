@@ -133,6 +133,8 @@
    * Implemented the user story #3, allowing the user to logout from the website to prevent unauthorized access. 
    * Implemented the front-end layout for the login page and the main website.
    * What I learned: This assignment allowed me to use my theoritical knowledge to create a basic website which could potentially have real world applications. It gave me an idea of how social media platforms operate on a basic level and what steps they take to protect the user data by following proper security guidelines. It also helped me to get a hands on experience of working with a development team.   
+   * Link - https://web.cs.dal.ca/~ibhatia/GA2/ 
+   
 - Neuer Gao (B00785904)
     * User Story #2 Implemented the functionality of user profile page, user can edit their password now
     * User Story #12 Implemented the functionality of block/un-block function.
