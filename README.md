@@ -143,6 +143,7 @@
     * User Story #12 Implemented the functionality of block/un-block function.
     * Fixed some bugs in other files.
     * What I learned: I learned how fast does JSON helps us to process data. I didn't use JSON here, so I waste a lot of time. I was also thinking about better database structure, we are using multiple JOIN here, that may be a challenge for server performance when data size becomes very large. I also learnt many mew PHP array method.
+    * Web hosted at URL: https://web.cs.dal.ca/~jiahaog/2170GA2/GA2/
 
 
 
